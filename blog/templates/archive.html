@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'styles.css' %}">
-  <title>posts</title>
-</head>
-<body>
-    <img src="{% static 'django.png' %}">
+{% extends 'base.html '%}
+
+{% block title %}
+  All posts
+{% endblock %}
+
+{% block content %}
     {% for post in posts %}
         <div class="one-post">
            <h2 class="post-title">
@@ -28,5 +25,4 @@
             </p>
         </div>
     {% endfor %}
-</body>
-</html>
+{% endblock %}

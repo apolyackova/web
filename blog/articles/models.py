@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 class Article(models.Model):
 
     title = models.CharField(max_length=200)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     text = models.TextField()
-    created_date = models.DateField(auto_now_add=True)
+    created_date = models.DateField(auto_now_add=True, blank=True)
 
     def __unicode__ (self):
         return "%s: %s" % (self.author.username, self.title)

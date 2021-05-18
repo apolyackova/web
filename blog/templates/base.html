@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <title>
+      {% block title %}
+        Title
+      {% endblock %}
+  </title>
+
+</head>
+<body>
+    <a href="/">
+      <img src="{% static 'django.png' %}">
+    </a>
+
+    {% block content %}
+        this page is empty
+    {% endblock %}
+</body>
+</html>

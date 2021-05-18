@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'styles.css' %}">
-  <title>{{ post.title }}</title>
-</head>
-<body>
-    <a href="/">
-      <img src="{% static 'django.png' %}">
-    </a>
+{% extends 'base.html '%}
+
+{% block title %}
+  {{ post.title }}
+{% endblock %}
+
+{% block content %}
     <div class="one-post">
         <h2 class="post-title">
               {{ post.title }}
@@ -26,5 +21,4 @@
             {{ post.get_excerpt }}
         </p>
     </div>
-</body>
-</html>
+{% endblock %}

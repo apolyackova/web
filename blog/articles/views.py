@@ -1,7 +1,8 @@
-from django.http import Http404
-from django.shortcuts import render
+from django.http import Http404, HttpResponse
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
-from .models import *
+from .forms import *
 
 
 def archive(request):
@@ -14,5 +15,21 @@ def article(request, id):
         article = Article.objects.get(id=id)
         return render(request, 'article.html', context={'post': article})
     except:
-        return Http404
+        return Http404()
+
+
+def add_article(request):
+    if request.method == "POST":
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            form.save(commit=False)
+            form.author = request.user
+            form.save()
+            return redirect(reverse('/'))
+
+    if request.method == "GET":
+        form = ArticleForm()
+        return render(request, 'add_article.html', context={'form': form})
+
+    return HttpResponse(status=403)
 
